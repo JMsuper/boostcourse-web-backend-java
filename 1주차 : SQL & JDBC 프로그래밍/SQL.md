@@ -15,7 +15,7 @@ CREATE, DROP, ALTER 등이 여기에 해당한다.
 ### 데이터베이스 사용자 생성과 권한 주기
 - Database를 생성했다면, 해당 데이터베이스를 사용하는 계정을 생성해야 한다. 또한, 해당 계정이<br>
 데이터베이스를 이용할 수 있는 권한을 줘야 한다. 아래와 같은 명령을 이용해서 사용자 생성과 권한을<br>
-줄 수 있다. db이름 뒤의 * 는 모든 권한을 의미한다. @'%' 는 어떤 클라이언트에서든 접근가능하다는 의미이고,
+줄 수 있다. db이름 뒤의 * 는 모든 권한을 의미한다. @'%' 는 어떤 클라이언트에서든 접근가능하다는 의미이고,<br>
 @'localhost'는 해당 컴퓨터에서만 접근가능하다는 의미이다.
 - flush privileges는 DBMS에게 적용을 하라는 의미이다. 해당 명령을 반드시 실행해줘야 한다.
 - 사용자 계정 : connectuser, 암호 : connect123!@#<br>
@@ -60,14 +60,14 @@ mysql과 같은 DB에서 인덱스번호는 0이 아닌 1부터 시작한다.<br
 오른쪽 공백 채우기 : 'SELECT RPAD('joe',5,'?')' => joe??<br>
 
 ### 공백 지우기 - TRIM
-`SELECT LTRIM(' hello ')` => 'hello '
-`SELECT TRIM(BOTH 'x' FROM 'xxxhixxx')` => hi
+`SELECT LTRIM(' hello ')` => 'hello '<br>
+`SELECT TRIM(BOTH 'x' FROM 'xxxhixxx')` => hi<br>
 
 ### CAST 형변환 - cast, convert
-cast 함수는 type을 변경하는데 유용하다.
-cast 함수의 사용법 : CAST(expression AS type) or CONVERT(expression,type)
-`SELECT cast(now() as date)` => 2021-11-12
-`SELECT convert(now(),date)` => 2021-11-12
+cast 함수는 type을 변경하는데 유용하다.<br>
+cast 함수의 사용법 : CAST(expression AS type) or CONVERT(expression,type)<br>
+`SELECT cast(now() as date)` => 2021-11-12<br>
+`SELECT convert(now(),date)` => 2021-11-12<br>
 
 ### 그룹함수와 groupby절
 `SELECT deptno, AVG(salary), SUM(salary) FROM employee group by deptno`<br>
