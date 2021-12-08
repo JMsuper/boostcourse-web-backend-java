@@ -26,3 +26,46 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
 (항상 연결하는게 있으면 닫아야 한다. DB는 접속할 수 있는 클라이언트가 무한대가 아니다.)
 
 ### JDBC 클래스의 생성관계
+<img src="https://github.com/JMsuper/boostcourse_web_backend/blob/main/img/JDBC%20%EC%83%9D%EC%84%B1%EA%B4%80%EA%B3%84.PNG" width=500><br>
+`DriverManager를 통해 Connection객체 생성` -> `Connection객체를 통해 Statement객체 생성` -> `Statement객체를 통해 ResultSet객체 생성`
+닫을 때는 역순이다.
+`ResultSet객체 해제` -> `Statement객체 해제` -> `Connection객체 해제`
+
+### 단계별 설명1
+- IMPORT
+  `import java.sql.*`
+- 드라이버 로드
+  `Class.forName("com.mysql.jdbc.Driver")`;
+  DB벤더에서 제공하는 객체이다. Class클래스의 forName메소드를 이용하면 해당 객체가
+  메모리에 올라간다. new를 통한 객체 생성과 비슷한 동작을 한다. 어떤 벤더사의 DB를 사용하냐에
+  따라서 forName()의 인자값은 달라진다.
+- Connection 얻기
+  - `String dburl = "jdbc:mysql://localhost/dbName";`
+  - `Connection con = DriverManager.getConnection(dburl,ID,PWD);`
+  
+### 단계별 설명2
+- Statement 생성
+  `Statement stmt = con.createStatement();`
+- 질의 수행
+  `ResultSet rs = stmt.executeQuery("select no from user");`
+  어떤 쿼리를 이용하는지에 따라 실행명령어는 달라진다.
+  - any SQL : execute()
+  - SELECT : executeQuery()
+  - INSERT, UPDATE, DELETE : executeUpdate()
+
+### 단계별 설명3
+- ResultSet으로 결과 받기
+  ```
+  ResultSet rs = stmt.executeQuery("select no from user");
+  while(rs.next())
+    System.out.println(rs.getInt("no"));
+  ```
+  ResultSet객체인 rs에 저장되는 것은 쿼리 수행 결과값이 아니다. 결과값은 DB가 가지고 있고,
+  ResultSet객체에 저장되는 것은 해당 결과를 가리키는 레퍼런스이다. 왜냐하면 쿼리결과가 10,000건이
+  넘는 경우, 이를 서버에 바로 전달하면 서버에 무리가 가기 때문에, 서버에서 필요한 값을 꺼내오는
+  형식으로 진행된다. 이떄 사용하는 메소드가 next()이다.
+  next()는 처음에 쿼리 결과의 첫번째 레코드를 가리키며, 실행 이후에는 다음 레코드를 가리키게 된다.
+- Close
+  - `rs.close();`
+  - `stmt.close();`
+  - `con.close();`
