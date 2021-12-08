@@ -44,4 +44,34 @@ CREATE, DROP, ALTER 등이 여기에 해당한다.
 cmd창에서 해당 파일의 경로로 들어간다.<br>
 `mysql -uconnectuser -p connectdb < examples.sql`
 
+### 컬럼의 합성(Concatenation) - concat
+`SELECT concat(컬럼명,'-',컬럼명) AS '별명' FROM 테이블명`
+
+### 중복행의 제거(Distinct) - distinct
+`SELECT distinct(컬럼명) from 테이블명`
+
+### 문자열 자르기 - substring
+`SELECT substring('Happy Day',3,2)` => pp<br>
+mysql과 같은 DB에서 인덱스번호는 0이 아닌 1부터 시작한다.<br>
+따라서 위 쿼리는 해당 문장의 3번 인덱스부터 2문자를 선택하라는 의미이다.<br>
+
+### 비어있는 공백 채우기 - LPAD,RPAD
+왼쪽 공백 채우기 : `SELECT LPAD('hi',5,'?')` => ???hi<br>
+오른쪽 공백 채우기 : 'SELECT RPAD('joe',5,'?')' => joe??<br>
+
+### 공백 지우기 - TRIM
+`SELECT LTRIM(' hello ')` => 'hello '
+`SELECT TRIM(BOTH 'x' FROM 'xxxhixxx')` => hi
+
+### CAST 형변환 - cast, convert
+cast 함수는 type을 변경하는데 유용하다.
+cast 함수의 사용법 : CAST(expression AS type) or CONVERT(expression,type)
+`SELECT cast(now() as date)` => 2021-11-12
+`SELECT convert(now(),date)` => 2021-11-12
+
+### 그룹함수와 groupby절
+`SELECT deptno, AVG(salary), SUM(salary) FROM employee group by deptno`<br>
+group by절을 사용할 때 그룹핑의 기준이 되는 컬럼을 select절에 추가해야한다.<br>
+그룹핑과 상관없는 컬럼을 넣을 경우 정상적으로 출력되지만, 올바를 결과가 아니므로,<br>
+반드시 group by에서 사용하는 컬럼명을 select절에 넣어야 한다.<br>
 
