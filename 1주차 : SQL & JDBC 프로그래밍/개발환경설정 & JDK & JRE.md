@@ -28,3 +28,8 @@ JDK설치가 완료되면, JDK에 대한 시스템 환경설정을 해야 한다
 3. 현재 설치된 JDK보다 높은 버전의 JDK를 설치했습니다. 이때 수정해야 할 환경변수는 무엇일까요?<br>
 JAVA_HOME만 수정하면된다. 왜냐하면, 다른 환경변수들이 JAVA_HOME을 참조하고 있기 떄문이다.<br>
 (하지만, 필자의 경우 위 방식으로 했을 때 콘솔창에서 javac가 실행되지 않아 절대경로를 환경변수로 등록하였다.)<br>
+
+### 자바 코딩 규칙 링크
+- https://google.github.io/styleguide/javaguide.html<br>
+- https://myeonguni.tistory.com/1596<br>
+- http://kwangshin.pe.kr/blog/java-code-conventions-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%94%A9-%EA%B7%9C%EC%B9%99/<br>
