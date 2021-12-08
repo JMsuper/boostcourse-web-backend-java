@@ -1,5 +1,6 @@
 # Maven
 참고링크 : https://www.boostcourse.org/web326/lecture/58937?isDesc=false
+참고링크 : https://junghn.tistory.com/entry/SPRINGMaven-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-groupId-artifactId-version-%EC%9D%B4%EB%9E%80
 ### Maven의 정의
 -  애플리케이션 개발을 위해 반복적으로 진행해왔던 작업들을 지원하기 위한 도구
 -  빌드, 패키징, 문서화, 테스트와 테스트 리포팅, git, 의존성관리, svn등과 같은 형상관리서버와 연동 및
