@@ -1,4 +1,6 @@
 # JDBC
+참고링크 : https://debugdaldal.tistory.com/181
+참고링크 : https://www.boostcourse.org/web326/lecture/58939?isDesc=false
 ### JDBC의 정의
 - 자바를 이용한 데이터베이스 접속과 SQL 문장의 실행, 그리고 실행 결과로 얻어진
 데이터의 핸들링을 제공하는 방법과 절차에 관한 규약
@@ -15,6 +17,7 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
 ### 필요한 환경 구성
 - JDK 설치
 - JDBC 드라이버 설치
+(환경설정 부분 실제 실습 후 추가필요)
 
 ### JDBC 사용 - 단계별 정리
 1. import java.sql.*;
@@ -27,18 +30,18 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
 
 ### JDBC 클래스의 생성관계
 <img src="https://github.com/JMsuper/boostcourse_web_backend/blob/main/img/JDBC%20%EC%83%9D%EC%84%B1%EA%B4%80%EA%B3%84.PNG" width=500><br>
-`DriverManager를 통해 Connection객체 생성` -> `Connection객체를 통해 Statement객체 생성` -> `Statement객체를 통해 ResultSet객체 생성`
-닫을 때는 역순이다.
-`ResultSet객체 해제` -> `Statement객체 해제` -> `Connection객체 해제`
+`DriverManager를 통해 Connection객체 생성` -> `Connection객체를 통해 Statement객체 생성` -> `Statement객체를 통해 ResultSet객체 생성`<br>
+닫을 때는 역순이다.<br>
+`ResultSet객체 해제` -> `Statement객체 해제` -> `Connection객체 해제`<br>
 
 ### 단계별 설명1
 - IMPORT
   `import java.sql.*`
 - 드라이버 로드
-  `Class.forName("com.mysql.jdbc.Driver")`;
-  DB벤더에서 제공하는 객체이다. Class클래스의 forName메소드를 이용하면 해당 객체가
-  메모리에 올라간다. new를 통한 객체 생성과 비슷한 동작을 한다. 어떤 벤더사의 DB를 사용하냐에
-  따라서 forName()의 인자값은 달라진다.
+  `Class.forName("com.mysql.jdbc.Driver")`;<br>
+  DB벤더에서 제공하는 객체이다. Class클래스의 forName메소드를 이용하면 해당 객체가<br>
+  메모리에 올라간다. new를 통한 객체 생성과 비슷한 동작을 한다. 어떤 벤더사의 DB를 사용하냐에<br>
+  따라서 forName()의 인자값은 달라진다.<br>
 - Connection 얻기
   - `String dburl = "jdbc:mysql://localhost/dbName";`
   - `Connection con = DriverManager.getConnection(dburl,ID,PWD);`
@@ -47,7 +50,7 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
 - Statement 생성
   `Statement stmt = con.createStatement();`
 - 질의 수행
-  `ResultSet rs = stmt.executeQuery("select no from user");`
+  `ResultSet rs = stmt.executeQuery("select no from user");`<br>
   어떤 쿼리를 이용하는지에 따라 실행명령어는 달라진다.
   - any SQL : execute()
   - SELECT : executeQuery()
@@ -60,12 +63,18 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
   while(rs.next())
     System.out.println(rs.getInt("no"));
   ```
-  ResultSet객체인 rs에 저장되는 것은 쿼리 수행 결과값이 아니다. 결과값은 DB가 가지고 있고,
-  ResultSet객체에 저장되는 것은 해당 결과를 가리키는 레퍼런스이다. 왜냐하면 쿼리결과가 10,000건이
-  넘는 경우, 이를 서버에 바로 전달하면 서버에 무리가 가기 때문에, 서버에서 필요한 값을 꺼내오는
-  형식으로 진행된다. 이떄 사용하는 메소드가 next()이다.
-  next()는 처음에 쿼리 결과의 첫번째 레코드를 가리키며, 실행 이후에는 다음 레코드를 가리키게 된다.
+  ResultSet객체인 rs에 저장되는 것은 쿼리 수행 결과값이 아니다. 결과값은 DB가 가지고 있고,<br>
+  ResultSet객체에 저장되는 것은 해당 결과를 가리키는 레퍼런스이다. 왜냐하면 쿼리결과가 10,000건이<br>
+  넘는 경우, 이를 서버에 바로 전달하면 서버에 무리가 가기 때문에, 서버에서 필요한 값을 꺼내오는<br>
+  형식으로 진행된다. 이떄 사용하는 메소드가 next()이다.<br>
+  next()는 처음에 쿼리 결과의 첫번째 레코드를 가리키며, 실행 이후에는 다음 레코드를 가리키게 된다.<br>
 - Close
   - `rs.close();`
   - `stmt.close();`
   - `con.close();`
+
+### 생각해보기
+- java.sql 외에 JAVA가 인터페이스만 대부분 제공하는 패키지는 또 어떤 것이 있을까요?
+JAVA가 인터페이스만 제공하는 패키지는 자바 ORM 명세인 JPA가 있다.
+자바ORM이란? 객체와 DB의 테이블 매핑을 이루는 것. SQL문 작성없이 DB데이터를 JAVA객체로 받을 수 있다.
+JPA란? 자바 ORM기술에 대한 API표준 명세.
