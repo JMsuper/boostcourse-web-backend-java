@@ -1,7 +1,7 @@
 # Web개발의 이해
 ## HTTP와 HTTPS의 차이점
 참고링크 : https://brunch.co.kr/@hyoi0303/10<br>
-참고링크 : https://opentutorials.org/course/228/4894<br>
+참고링크 : https://opentutorials.org/course/228/4894<br><br>
  HTTP 프로토콜의 문제점은 서버에서부터 브라우저로 전송되는 정보가 암호화되지 않는다는 것이다.<br>
 즉, 데이터가 쉽게 도난될 수 있다. HTTPS 프로토콜은 SSL(보안 소켓 계층)을 사용하여 이 문제를 해결했다.<br>
 SSL은 서버와 브라우저 사이에 안전하게 암호화된 연결을 만들어 준다.<br>
