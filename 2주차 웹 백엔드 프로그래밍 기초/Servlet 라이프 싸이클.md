@@ -23,12 +23,12 @@ destroy() : 서버 코드의 수정과 같은 변화가 있거나, WAS가 종료
   - 클라이언트의 요청이 GET일 경우에는 자신이 가지고 있는 doGet(request,response)를 호출
   - 클라이언트의 요청이 POST일 경우에는 자신이 가지고 있는 doPost(request,response)를 호출
 - 즉, service 메소드는 클라이언트의 요청 종류에 따라 지정된 메소드를 호출한다.
+<br>
+service(request, response)메소드의 oracle document<br>
+`Receives standard HTTP requests from the public service method and dispatches them to the doXXX methods defined in this class.`<br>
 
-service(request, response)메소드의 oracle document
-`Receives standard HTTP requests from the public service method and dispatches them to the doXXX methods defined in this class.`
-
-궁금증??
-html에서 <form>을 통해 POST 요청을 서버에서 보냈다. 이때 input값이 파라미터값으로 함께 서버에
-넘겨지는데, url에는 파라미터가 나타나지 않고 있다. 내 생각에는 url이 아니면, body에 담아서
-보낸 것 같기도 하다. 이를 어떻게 찾아볼 수 있을까?
+### 궁금증?
+html에서 form태그를 통해 POST 요청을 서버에서 보냈다. 이때 input값이 파라미터값으로 함께 서버에<br>
+넘겨지는데, url에는 파라미터가 나타나지 않고 있다. 내 생각에는 url이 아니면, body에 담아서<br>
+보낸 것 같기도 하다. 이를 어떻게 찾아볼 수 있을까?<br>
 Network탭에서 headers가 아닌 payload를 확인해보면 request의 body 부분을 볼 수 있다.
