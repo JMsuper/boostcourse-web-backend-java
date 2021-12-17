@@ -54,3 +54,14 @@ CGI의 의미는 공통 게이트웨이 인터페이스인데, 이를 풀어서 
 이를 보완하기 위해 프로세스가 아닌 스레드 단위로 동작하는 프로그램이 등장하게 된다.<br>
 그것이 바로 Servlet이다.
 
+### Servlet과 CGI의 차이점
+참고링크 : https://www.geeksforgeeks.org/difference-between-java-servlet-and-cgi/<br>
+|Basis|Servlet|CGI|
+|------|:---:|:---:|
+|Approach|스레드 기반|프로세스 기반|
+|사용 언어|JAVA|상관없음|
+|OOP|O|X|
+|Portability|O|X|
+|Persistence|명시적으로 해제될 때까지 메모리에 유지|요청 종료시 해제|
+|Server Indepent|O|X|
+|Data Sharing|O|X|
