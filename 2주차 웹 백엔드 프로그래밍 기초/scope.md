@@ -86,7 +86,9 @@ Servlet2
     value++;
     application.setAttribute("value", value);
 ```
-위에서 application 객체에 집어넣은 value값은 다른 클라이언트에서 접속할 때도 공유되는 값이다.
+위에서 application 객체에 집어넣은 value값은 다른 클라이언트에서 접속할 때도 공유되는 값이다.<br>
+만약, getAttribute(공유자원이름)에서 공유자원이름에 해당하는 것이 없을 경우<br>
+NullPointerException을 발생시킨다. 
 
 
 
