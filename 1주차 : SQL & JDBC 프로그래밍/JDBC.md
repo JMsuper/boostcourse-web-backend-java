@@ -17,7 +17,14 @@ JDBC 인터페이스를 구현한 드라이버를 제공한다. ~따라서, 어�
 ### 필요한 환경 구성
 - JDK 설치
 - JDBC 드라이버 설치
-(환경설정 부분 실제 실습 후 추가필요)
+pom.xml의 dependencies에 추가
+```
+<dependency>   
+  <groupId>mysql</groupId>   
+       <artifactId>mysql-connector-java</artifactId>
+       <version>5.1.45</version>
+ </dependency>
+```
 
 ### JDBC 사용 - 단계별 정리
 1. import java.sql.*;
