@@ -85,3 +85,6 @@ pom.xml의 dependencies에 추가
 JAVA가 인터페이스만 제공하는 패키지는 자바 ORM 명세인 JPA가 있다.
 자바ORM이란? 객체와 DB의 테이블 매핑을 이루는 것. SQL문 작성없이 DB데이터를 JAVA객체로 받을 수 있다.
 JPA란? 자바 ORM기술에 대한 API표준 명세.
+
+
+## JDBC 실습
