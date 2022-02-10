@@ -21,7 +21,7 @@ Spring MVC의 핵심은 DispetcherServlet이다.
 <img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/DispatcherServlet%EB%82%B4%EB%B6%80%EB%8F%99%EC%9E%91%ED%9D%90%EB%A6%84.JPG" width=700><br>
 
 #### 요청 선처리 작업
-<img src="https://github.com/JMsuper/boostcourse-web-backend-java" width=600><br>
+<img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/Dispatcherservlet%EC%9A%94%EC%B2%AD%EC%84%A0%EC%B2%98%EB%A6%AC%EC%9E%91%EC%97%85.JPG" width=600><br>
 - Locale결정 : 지역화. 사용자의 지역환경에 따라 다른 처리를 수행한다. 예를 들어 브라우저의 언어세팅된 것에 맞춰 응답하는 것이 있다.
 - RequestContextHolder에 요청 저장 : thread 로컬 객체이다. request를 받아서 response를 응답할 때까지 HttpServletRequest 객체와
   HttpServletResponse 객체를 스프링이 관리하는 객체 안에서 사용할 수 있도록 하는 과정이다. 이 과정 덕분에 controller의 메소드에서는
@@ -68,8 +68,36 @@ Spring MVC의 핵심은 DispetcherServlet이다.
 <img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/DispatcherServlet%EC%9A%94%EC%B2%AD%EC%B2%98%EB%A6%AC.JPG" width=600><br>
 - 인터셉터 : 일종의 필터라고 생각하면 된다. 5주차에서 다시 학습
 
+##### 사용된 컴포넌트
+- org.springframework.web.servlet.ModelAndView
+  - ModelAndView는 Controller의 처리 결과를 보여줄 view와 view에서 사용할 값을 전달하는 클래스
+- org.springframework.web.servlet.RequestToViewNameTranslator
+  - 컨트롤러에서 뷰 이름이나 뷰 오브젝트를 제공해주지 않았을 경우 URL과 같은 요청정보를 참고해서 자동으로 뷰 이름을 생성해주는
+    전략 오브젝트. 디폴트는 DefaultRequestToViewNameTranslator.
 
+#### 예외 처리
+<img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/DispatcherServlet%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.JPG" width=500><br>
+예외 발생시 HandlerExceptionResolvere를 호출하여 불려져야할 핸들러를 실행한다. 그런데 만약 해당 핸들러에서 ModelAndView를
+리턴하지 않는다면 예외를 다시 던지고, 리턴한다면 요청처리를 재개한다.
 
+##### 사용된 컴포넌트
+- org.springframework.web.servlet.handlerexceptionresolver
+  - 기본적으로 DispatcherServlet이 DefaultHandlerExceptionResolver를 등록한다.
+  - HandlerExceptionResolver는 예외가 던져졌을 때 어떤 핸들러를 실행할 것인지에 대한 정보를 제공한다.
+
+#### 뷰 렌더링 과정
+<img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/DispatcherServlet%EB%B7%B0%EB%A0%8C%EB%8D%94%EB%A7%81%EA%B3%BC%EC%A0%95.JPG" width=600><br>
+View 구현체를 찾으면 해당 구현체로 랜더링을 진행하고 요청 처리를 재개한다. 만약 없으면 ServletException을 던진다.
+
+#### 사용된 컴포넌트
+- org.springframework.web.servlet.ViewResolver
+  - 컨트롤러가 리턴한 뷰 이름을 참고해서 적절한 뷰 오브젝트를 찾아주는 로직을 가진 전략 오프젝트이다.
+  - 뷰의 종류에 따라 적절한 뷰 리졸버를 추가로 설정해줄 수 있다.
+
+#### 요청 처리 종료
+<img src="https://github.com/JMsuper/boostcourse-web-backend-java/blob/main/img/DispatcherServlet%EC%9A%94%EC%B2%AD%EC%B2%98%EB%A6%AC%EC%A2%85%EB%A3%8C.JPG" width=350><br>
+HandlerExecutionChain이 존재하지 않으면 곧바로 RequestHandledEvent를 발생시킨다. 이는 요청 전달과정에서<br>
+HandlerExecutionChain이 발견되지 않았을 때 곧바로 Http 404를 전달하는 것과 동일한 과정이다.
 
 
 
