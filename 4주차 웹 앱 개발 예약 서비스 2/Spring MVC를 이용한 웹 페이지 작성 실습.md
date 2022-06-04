@@ -1,7 +1,7 @@
 # Spring MVC를 이용한 웹 페이지 작성 실습
 
 ## DispatchereServlet
-DispatcherServlet이 FrontController 역할을 할 수 있도록 설정해야한다. 설정 방법으로는 3가지가 있다.
+DispatcherServlet이 FrontController 역할을 할 수 있도록 설정해야한다. 직접 설정하지 않으면 스프링은 DispatcherServlet이 프론트 컨트롤러의 역할을 수행하는 지 알 수 없다. 그리고, DispatcherServlet도 결국 서블릿이기 때문에 설정해야한다. 설정 방법으로는 3가지가 있다.
 1. web.xml
 2. ServletContainerInitializer
 3. WebApplicationInitializer
